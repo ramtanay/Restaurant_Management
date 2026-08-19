@@ -332,3 +332,94 @@ SELECT * FROM orders;
 SELECT * FROM order_items;
 
 SELECT * FROM payments;
+
+
+
+
+UPDATE customers SET phone = '9876500099' WHERE customer_id = 12;
+
+SELECT * FROM customers WHERE customer_id = 12;
+
+
+
+UPDATE menu_items SET price = 270.00 WHERE item_name = 'Chicken Biryani';
+
+SELECT item_name, price FROM menu_items WHERE item_name = 'Chicken Biryani';
+
+
+
+INSERT INTO customers (first_name, last_name, phone, email) VALUES ('Temporary', 'Customer', '9999999999', 'temporary@gmail.com');
+
+SELECT * FROM customers WHERE phone = '9999999999';
+
+
+DELETE FROM customers WHERE phone = '9999999999';
+
+SELECT * FROM customers WHERE phone = '9999999999';
+
+
+
+
+
+
+SELECT
+    item_name,
+    price
+FROM menu_items
+ORDER BY price ASC;
+
+
+
+SELECT COUNT(*) AS total_customers FROM customers;
+
+
+SELECT SUM(amount) AS total_revenue FROM payments WHERE payment_status = 'Completed';
+
+
+SELECT
+    category_id,
+    COUNT(*) AS number_of_items
+FROM menu_items
+GROUP BY category_id;
+
+
+
+SELECT
+    item_name,
+    price,
+    CASE
+        WHEN price < 150 THEN 'Budget'
+        WHEN price BETWEEN 150 AND 250 THEN 'Moderate'
+        ELSE 'Premium'
+    END AS price_category
+FROM menu_items;
+
+
+
+SELECT
+    CONCAT(first_name, ' ', last_name) AS customer_name,
+    phone
+FROM customers;
+
+
+SELECT
+    payment_method,
+    SUM(amount) AS total_amount
+FROM payments
+GROUP BY payment_method
+HAVING SUM(amount) > 2000;
+
+
+
+
+SELECT
+    UPPER(item_name) AS item_name
+FROM menu_items;
+
+
+
+
+SELECT
+    order_id,
+    YEAR(order_date) AS order_year
+FROM orders;
